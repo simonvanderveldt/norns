@@ -49,13 +49,9 @@ def configure(conf):
         define_name='HAVE_SUPERCOLLIDER',
         mandatory=True,
         includes=[
-            '{}/include/SuperCollider/plugin_interface'.format(conf.env.PREFIX),
-            '{}/include/SuperCollider/common'.format(conf.env.PREFIX),
-            '/usr/include/SuperCollider/plugin_interface',
-            '/usr/include/SuperCollider/common',
-            '/usr/local/include/SuperCollider/plugin_interface',
-            '/usr/local/include/SuperCollider/common',
-            '/sc/external_libraries/nova-simd'
+            '/buildroot/output/staging/usr/include/SuperCollider/plugin_interface',
+            '/buildroot/output/staging/usr/include/SuperCollider/common/',
+            'sc/external_libraries/nova-simd'
         ],
         header_name='SC_PlugIn.h',
         uselib_store='SUPERCOLLIDER')
