@@ -1115,8 +1115,8 @@ elseif n==3 and z==1 then
     norns.state.clean_shutdown = true
     norns.state.save()
     if pcall(cleanup) == false then print("cleanup failed") end
-    os.execute("sudo systemctl restart norns-jack.service")
-    os.execute("sudo systemctl restart norns-matron.service")
+    os.execute("systemctl restart norns-jack.service")
+    os.execute("systemctl restart norns-matron.service")
   end
 end
 
@@ -1159,9 +1159,9 @@ local function get_update()
   pcall(cleanup) -- shut down script
   norns.script.clear()
   print("shutting down audio...")
-  os.execute("sudo systemctl stop norns-jack.service") -- disable audio
+  os.execute("systemctl stop norns-jack.service") -- disable audio
   print("clearing old updates...")
-  os.execute("sudo rm -rf /home/we/update/*") -- clear old updates
+  os.execute("rm -rf /home/we/update/*") -- clear old updates
   m.update.message = "downloading..."
   menu.redraw()
   print("starting download...")
@@ -1205,7 +1205,7 @@ m.key[pUPDATE] = function(n,z)
     print("shutting down.")
     m.update.message = "shutting down."
     menu.redraw()
-    os.execute("sleep 0.5; sudo shutdown now")
+    os.execute("sleep 0.5; shutdown now")
   end
 end
 
@@ -1264,7 +1264,7 @@ m.key[pSLEEP] = function(n,z)
     if m.tape.rec.sel == TAPE_REC_STOP then audio.tape_record_stop() end
     audio.level_dac(0)
     audio.headphone_gain(0)
-    os.execute("sleep 0.5; sudo shutdown now")
+    os.execute("sleep 0.5; shutdown now")
   end
 end
 
