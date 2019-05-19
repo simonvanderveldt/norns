@@ -1,4 +1,8 @@
-top = '..'
+def set_options(opt):
+    pass
+
+def configure(conf):
+    pass
 
 def build_ugen(bld, target, source):
     ugen = bld.shlib(features='c cxx',
@@ -34,3 +38,8 @@ def build(bld):
     for u in ugens:
         build_ugen(bld, u['target'], u['source'])
         build_ugen_supernova(bld, u['target'], u['source'])
+
+    # Install SC files
+    bld.install_files('${PREFIX}/share/SuperCollider/norns', bld.path.ant_glob('core/**/*'), relative_trick=True)
+    bld.install_files('${PREFIX}/share/SuperCollider/norns', bld.path.ant_glob('engines/**/*'), relative_trick=True)
+    bld.install_files('${PREFIX}/share/SuperCollider/norns', 'norns-config.sc')
