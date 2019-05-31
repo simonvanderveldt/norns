@@ -36,7 +36,7 @@ def configure(conf):
     conf.check_cfg(package='lua53', args=['--cflags', '--libs'])
     conf.check_cfg(package='nanomsg', args=['--cflags', '--libs'])
     conf.check_cfg(package='avahi-compat-libdns_sd', args=['--cflags', '--libs'])
-    conf.check_cfg(package='sndfile', args=['--cflags', '--libs'])	
+    conf.check_cfg(package='sndfile', args=['--cflags', '--libs'])
 
     conf.check_cc(msg='Checking for libmonome',
         define_name='HAVE_LIBMONOME',
@@ -66,3 +66,7 @@ def build(bld):
     bld.recurse('ws-wrapper')
     bld.recurse('sc')
     bld.recurse('crone')
+
+    # Install resources
+    bld.install_files('${PREFIX}/share/norns', bld.path.ant_glob('resources/**/*'), relative_trick=True)
+    bld.install_files('${PREFIX}/share/norns', bld.path.ant_glob('lua/**/*'), relative_trick=True)

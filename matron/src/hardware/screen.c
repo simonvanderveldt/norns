@@ -139,10 +139,10 @@ handle_allocate_error:
 void screen_display_png(const char *filename, double x, double y){
 	int img_w, img_h;
 	//fprintf(stderr, "loading: %s\n", filename);
-	
+
 	image = cairo_image_surface_create_from_png (filename);
 	if(image == NULL) { return; }
-	
+
 	img_w = cairo_image_surface_get_width (image);
 	img_h = cairo_image_surface_get_height (image);
 
@@ -246,13 +246,12 @@ void screen_init(void) {
     for (int i=0; i<NUM_FONTS; ++i) {
       fprintf(stderr, "  %d: %s\n", i, font_path[i]);
     }
-    
+
     char filename[256];
 
     for(int i = 0; i < NUM_FONTS; i++) {
         // FIXME should be path relative to norns/
-        snprintf(filename, 256, "%s/norns/resources/%s", getenv(
-                     "HOME"), font_path[i]);
+        snprintf(filename, 256, "/usr/share/norns/resources/%s", font_path[i]);
 
         status = FT_New_Face(value, filename, 0, &face[i]);
         if(status != 0) {
